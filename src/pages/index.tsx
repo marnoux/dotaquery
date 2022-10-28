@@ -1,3 +1,5 @@
+import { HomeView } from '../views/home/HomeView';
+
 export default function Home() {
-  return <p>Dotaquery</p>;
+  return <HomeView />;
 }
