@@ -9,6 +9,7 @@ export const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <MainHeader />
+      <br />
       {children}
     </>
   );
