@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { Button, Card, Col, Container, Row, Stack } from 'react-bootstrap';
+import { Card, Col, Container, Row, Stack } from 'react-bootstrap';
 import { playerInfo } from '../../data/Players/constants';
 import { Player } from '../../data/Players/types';
-import { url } from '../../data/Shared/constants';
+import { url } from '../../data/shared/constants';
+import { Loader } from '../Layout/Loader';
 
 const fetchPlayer = () => axios.get<Player>(`${url}${playerInfo('109399022')}`);
 
@@ -13,30 +14,22 @@ export const PlayerSummary = () => {
   });
 
   return isLoading ? (
-    <Container>
-      <Stack gap={5}>
-        <Row className="col-md-5 mx-auto">
-          <Col>
-            <h2>Loading...</h2>{' '}
-          </Col>
-        </Row>
-      </Stack>
-    </Container>
+    <Loader />
   ) : (
     <Container>
-      <Stack gap={5}>
-        <Row className="col-md-5 mx-auto">
+      <Stack gap={5} className="col-4 mx-auto">
+        <Row>
           <Col>
-            <Card style={{ width: '20rem' }}>
+            <Card style={{ width: '25rem' }}>
               <Card.Img variant="top" src={data?.profile.avatarfull} />
-              <Card.Body className="col-md-5 mx-auto">
+              <Card.Body>
                 <Row>
-                  <Col>
+                  <Col className="col-4 mx-auto">
                     <Card.Title>{data?.profile.personaname}</Card.Title>
                   </Col>
                 </Row>
                 <Row>
-                  <Col>MMR:{data?.mmr_estimate.estimate}</Col>
+                  <Col className="col-4 mx-auto">MMR: {data?.mmr_estimate.estimate}</Col>
                 </Row>
               </Card.Body>
             </Card>
